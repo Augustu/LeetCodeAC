@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# docs
+Explorer/BinaryTree/docs
+
+# vscode configuration
+.vscode
