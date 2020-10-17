@@ -34,5 +34,9 @@
 # docs
 Explorer/BinaryTree/docs
 
+# temp files
+.tmp
+~\$*
+
 # vscode configuration
 .vscode
