@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <linkedlist>
+#include "linkedlist"
 
 using namespace std;
 
@@ -18,12 +18,27 @@ public:
             return l1;
         }
 
-        ListNode* head = new ListNode(0, l1);
-        l1 = head->next;
-        ListNode* pre = head;
-        while (l1 != nullptr) {
-            // TODO
-            l1 = l1->next;
+        ListNode* head = new ListNode(0);
+        ListNode* current = head;
+        while (l1 != nullptr && l2 != nullptr) {
+            while (l1 != nullptr && l2 != nullptr
+                && l1->val <= l2->val) {
+                current->next = l1;
+                current = current->next;
+                l1 = l1->next;
+            }
+            while (l1 != nullptr && l2 != nullptr
+                && l1->val > l2->val) {
+                current->next = l2;
+                current = current->next;
+                l2 = l2->next;
+            }
+        }
+        if (l1 != nullptr) {
+            current->next = l1;
+        }
+        if (l2 != nullptr) {
+            current->next = l2;
         }
 
         return head->next;
