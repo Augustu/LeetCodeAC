@@ -1,0 +1,19 @@
+template<class T>
+struct LinkNode {
+    T val;
+    LinkNode *next;
+    LinkNode() : val(0), next(nullptr) {}
+    LinkNode(T x) : val(x), next(nullptr) {}
+    LinkNode(T x, LinkNode *next) : val(x), next(next) {}
+};
+
+
+template<typename T>
+LinkNode<T>* makeLinkedList(T t) {
+    return new LinkNode<T>(t);
+}
+
+template<typename T, typename ... Types>
+LinkNode<T>* makeLinkedList(T first, Types ... rest) {
+    return new LinkNode<T>(first, makeLinkedList(rest...));
+}
