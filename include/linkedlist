@@ -1,3 +1,5 @@
+#include <iostream>
+
 template<class T>
 struct LinkNode {
     T val;
@@ -7,6 +9,7 @@ struct LinkNode {
     LinkNode(T x, LinkNode *next) : val(x), next(next) {}
 };
 
+typedef LinkNode<int> ListNode;
 
 template<typename T>
 LinkNode<T>* makeLinkedList(T t) {
@@ -16,4 +19,14 @@ LinkNode<T>* makeLinkedList(T t) {
 template<typename T, typename ... Types>
 LinkNode<T>* makeLinkedList(T first, Types ... rest) {
     return new LinkNode<T>(first, makeLinkedList(rest...));
+}
+
+template<typename T>
+void printLinkedList(LinkNode<T>* head) {
+    LinkNode<T>* list = head;
+    while (list) {
+        std::cout << list->val << " ";
+        list = list->next;
+    }
+    std::cout << std::endl;
 }

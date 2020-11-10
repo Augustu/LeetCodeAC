@@ -21,7 +21,7 @@ public:
             return post;
         }
 
-        // TODO beautify this loop
+        // beautied this loop in 206. 反转链表
         ListNode* pre = head;
         ListNode* middle = head->next;
         ListNode* post = head->next->next;
