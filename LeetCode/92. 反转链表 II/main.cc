@@ -74,7 +74,7 @@ public:
          *     |       └------┼---------┘
          *     └--------------┘
          * 
-        */ 
+         */ 
         for (int i=m; i<n; ++i) {
             ListNode* post = head->next;
             head->next = post->next; // 2
