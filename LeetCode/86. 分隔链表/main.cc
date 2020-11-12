@@ -5,6 +5,7 @@
 using namespace std;
 
 
+/*
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
@@ -54,7 +55,13 @@ public:
         return sentinel->next;
     }
 };
+*/
 
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {}
+};
 
 
 int main() {
