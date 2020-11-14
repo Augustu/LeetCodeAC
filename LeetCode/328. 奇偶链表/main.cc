@@ -8,40 +8,20 @@ using namespace std;
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        // TODO fix this, i'm confused :(
-        if (!head) return head;
-
-        ListNode* anchor = head;
-        ListNode* tmp = head->next;
-        int length = 0;
-        while (tmp) {
-            length++;
-            anchor = anchor->next;
-            tmp = tmp->next;
+        if (head == nullptr) {
+            return head;
         }
-
-        ListNode* pre = head;
-        ListNode* curr = head->next;
-        for (int i=1; i<length; ++i) {
-            if (i%2) {
-                cout << curr->val << endl;
-                // odd, move this to tail
-                ListNode* tmp = curr->next;
-                anchor->next = curr;
-                anchor = anchor->next;
-
-                curr->next = nullptr;
-                curr = tmp;
-                pre->next = curr;
-            } else {
-                pre = pre->next;
-                curr = curr->next;
-            }
-            
+        ListNode* evenHead = head->next;
+        ListNode* odd = head;
+        ListNode* even = evenHead;
+        while (even != nullptr && even->next != nullptr) {
+            odd->next = even->next;
+            odd = odd->next;
+            even->next = odd->next;
+            even = even->next;
         }
-
+        odd->next = evenHead;
         return head;
-
     }
 };
 
