@@ -5,7 +5,7 @@
 using namespace std;
 
 
-/*
+/* this sort the result, but clearly not the answer :(
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
@@ -60,7 +60,44 @@ public:
 
 class Solution {
 public:
-    ListNode* partition(ListNode* head, int x) {}
+    ListNode* partition(ListNode* head, int x) {
+        if (!head) return head;
+
+        // ListNode* sentinel = new ListNode(-1, head);
+        ListNode* sentinel = new ListNode(-1);
+        sentinel->next = head;
+
+        // find the pos
+        ListNode* pre = sentinel;
+        ListNode* anchor = head;
+
+        while (anchor) {
+            if (anchor->val >= x) {
+                break;
+            }
+            pre = pre->next;
+            anchor = anchor->next;
+        }
+
+        // all node less than x
+        if (!anchor) {
+            return head;
+        }
+
+        // TODO fix me.
+        ListNode* current = anchor->next;
+        while (current) {
+            ListNode* post = current->next;
+            if (current->val < x) {
+                pre->next = current;
+                current->next = anchor;
+                pre = current;
+            }
+            current = post;
+        }
+
+        return sentinel->next;
+    }
 };
 
 
@@ -73,14 +110,14 @@ int main() {
     Solution s;
     result = s.partition(test_1, 3);
     printLinkedList(result);
-    result = s.partition(test_1, 2);
-    printLinkedList(result);
-    result = s.partition(test_1, 5);
-    printLinkedList(result);
-    result = s.partition(test_2, 2);
-    printLinkedList(result);
-    result = s.partition(test_3, 3);
-    printLinkedList(result);
+    // result = s.partition(test_1, 2);
+    // printLinkedList(result);
+    // result = s.partition(test_1, 5);
+    // printLinkedList(result);
+    // result = s.partition(test_2, 2);
+    // printLinkedList(result);
+    // result = s.partition(test_3, 3);
+    // printLinkedList(result);
 
     return 0;
 }

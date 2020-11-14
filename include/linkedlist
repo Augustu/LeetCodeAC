@@ -3,13 +3,27 @@
 template<class T>
 struct LinkNode {
     T val;
-    LinkNode *next;
+    LinkNode* next;
     LinkNode() : val(0), next(nullptr) {}
     LinkNode(T x) : val(x), next(nullptr) {}
-    LinkNode(T x, LinkNode *next) : val(x), next(next) {}
+    LinkNode(T x, LinkNode* next) : val(x), next(next) {}
 };
 
 typedef LinkNode<int> ListNode;
+
+template<class T>
+struct DoubleNode {
+    T val;
+    DoubleNode* prev;
+    DoubleNode* next;
+    DoubleNode* random;
+    DoubleNode* child;
+    DoubleNode() : val(0), next(nullptr) {}
+    DoubleNode(T x) : val(x), next(nullptr) {}
+    DoubleNode(T x, DoubleNode* next) : val(x), next(next) {}
+};
+
+typedef DoubleNode<int> Node;
 
 template<typename T>
 LinkNode<T>* makeLinkedList(T t) {
