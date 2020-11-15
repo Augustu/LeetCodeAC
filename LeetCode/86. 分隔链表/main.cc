@@ -63,37 +63,40 @@ public:
     ListNode* partition(ListNode* head, int x) {
         if (!head) return head;
 
-        // ListNode* sentinel = new ListNode(-1, head);
         ListNode* sentinel = new ListNode(-1);
         sentinel->next = head;
 
-        // find the pos
-        ListNode* pre = sentinel;
+        ListNode* prev = sentinel;
         ListNode* anchor = head;
-
         while (anchor) {
             if (anchor->val >= x) {
                 break;
             }
-            pre = pre->next;
+            prev = prev->next;
             anchor = anchor->next;
         }
 
-        // all node less than x
         if (!anchor) {
             return head;
         }
 
-        // TODO fix me.
-        ListNode* current = anchor->next;
-        while (current) {
-            ListNode* post = current->next;
-            if (current->val < x) {
-                pre->next = current;
-                current->next = anchor;
-                pre = current;
+        ListNode* pre_rest = anchor;
+        ListNode* rest = anchor->next;
+        while (rest) {
+            if (rest->val < x) {
+                // del rest in linked list, do not move pre_rest
+                pre_rest->next = rest->next;
+
+                // insert rest between prev and anchor
+                ListNode* post = rest->next;
+                prev->next = rest;
+                rest->next = anchor;
+                prev = prev->next;
+                rest = post;
+            } else {
+                pre_rest = pre_rest->next;
+                rest = rest->next;
             }
-            current = post;
         }
 
         return sentinel->next;
