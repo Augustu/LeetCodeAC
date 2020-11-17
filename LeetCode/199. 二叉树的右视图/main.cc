@@ -9,10 +9,8 @@ using namespace std;
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        // TODO finish this
         if (!root) return vector<int>();
 
-        int level = 0;
         int nextLevel = 0;
         int currentRest = 1;
         vector<int> result;
@@ -26,11 +24,21 @@ public:
                 result.emplace_back(node->val);
             }
 
-            if (!node->left) {
+            if (node->left) {
                 treeNodeQueue.push(node->left);
+                ++nextLevel;
             }
-            if (!node->right) {
+            if (node->right) {
                 treeNodeQueue.push(node->right);
+                ++nextLevel;
+            }
+
+            treeNodeQueue.pop();
+            --currentRest;
+
+            if (currentRest == 0) {
+                currentRest = nextLevel;
+                nextLevel = 0;
             }
         }
 
