@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+
+template<typename T>
+void PrintVV(std::vector<std::vector<T>>& vvt) {
+    for (std::vector<T> vt : vvt) {
+        for (T t : vt) {
+            std::cout << t << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+template<typename T>
+void PrintV(std::vector<T>& vt) {
+    for (T t : vt) {
+        std::cout << t << " ";
+    }
+    std::cout << std::endl;
+}
